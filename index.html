@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Park</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/img/touch-icon-114.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/img/touch-icon-72.png" />
+	<link rel="apple-touch-icon" href="assets/img/touch-icon-57.png" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+	<div ng-app="myApp">
+		<ng-view></ng-view>
+	</div>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-route/angular-route.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/services/navigator.js"></script>
+	<script src="app/directives/screenHeading.js"></script>
+	<script src="app/controllers/ErrorCtrl.js"></script>
+	<script src="app/controllers/HomeCtrl.js"></script>
+</body>
+</html>

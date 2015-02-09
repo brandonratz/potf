@@ -1,0 +1,15 @@
+<table style="width: 100%">
+	<tr>
+		<td style="text-align: left; vertical-align: middle; width: 20%;">
+			<button type="button" class="btn btn-default btn-sm" ng-if="screenHeading.leftName" ng-click="screenHeading.leftFunction()"><span class="glyphicon {{screenHeading.leftIcon}}" ng-if="screenHeading.leftIcon"></span> {{screenHeading.leftName}}</button>	
+			<span ng-if="!screenHeading.leftName">&nbsp;</span>
+		</td>
+		<td style="text-align: center; vertical-align: middle; width: 60%;">
+			<strong>{{screenHeading.centerName}}</strong>
+		</td>
+		<td style="text-align: right; vertical-align: middle; width: 20%;">
+			<button type="button" class="btn btn-default btn-sm" ng-if="screenHeading.rightName" ng-click="screenHeading.rightFunction()"><span class="glyphicon {{screenHeading.rightIcon}}" ng-if="screenHeading.rightIcon"></span> {{screenHeading.rightName}}</button>	
+			<span ng-if="!screenHeading.rightName">&nbsp;</span>
+		</td>
+	</tr>
+</table>
