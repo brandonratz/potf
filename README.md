@@ -1,2 +1,2 @@
 # potf
-Front end AngularJS App
+Front end Angular.js App
