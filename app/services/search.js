@@ -21,7 +21,7 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 }
 
 angular.module('myApp').
-factory('search', function() {
+factory('search', ['$q', function($q) {
 	var service = {
 		lots: [{
 			_id : "a",
@@ -41,7 +41,8 @@ factory('search', function() {
 			buffer : 2
 		}]
 	};
-	service.search = function(params, success, error) {
+	service.search = function(params) {
+		var deferred = $q.defer();
 		var DIA = 2;
 		var lat = params.lat;
 		var lng = params.lng;
@@ -70,11 +71,12 @@ factory('search', function() {
 					});
 				}
 			}
-			success(result);
+			deferred.resolve(result);
 		} else {
-			error();
+			deferred.reject();	
 		}
+		return deferred.promise;
 	}
 	return service;
-});
+}]);
 })();

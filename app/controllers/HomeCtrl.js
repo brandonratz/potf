@@ -14,18 +14,18 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 	function updateLots() {
 		search.search(
 			{
-				lat: ctrl.search.center.latitude,
-				lng: ctrl.search.center.longitude,
+				lat: ctrl.map.center.latitude,
+				lng: ctrl.map.center.longitude,
 				start: 0,
 				end: 1
-			},
-			function(result) {
-				console.log(result);
-			},
-			function() {
-				console.log('error');
 			}
-		);
+		).
+		then(function(data) {
+			console.log(data);
+		}).
+		catch(function() {
+			console.log('error');
+		});
 	}; 
 	uiGmapGoogleMapApi.then(function(maps) {
 		ctrl.map = {
@@ -43,20 +43,12 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 					position: maps.ControlPosition.BOTTOM_LEFT
 				},
 				scaleControl: true
-			}
-		};	
-		ctrl.search = {
-			center: {
-				latitude : 29.6254423,
-                        	longitude : -82.4373587
 			},
-			radius: DIA * 1000,
 			events: {
-				dragend: function() {
-					updateLots();
-				}
-			}	
-		};
+				dragend: updateLots
+			}
+			
+		};	
 		updateLots();
     	});
 }]);

@@ -1,17 +1,8 @@
 <ui-gmap-google-map 
 	center="home.map.center" 
 	zoom="13"
-	options="home.map.options">
-	<ui-gmap-circle
-		center="home.search.center"
-		radius="home.search.radius"
-		fill="{color: '#00FF00', opacity: 0.2}"
-		stroke="{color: '#00FF00', weight: 2, opacity: 1}"
-		clickable="true"
-		draggable="true"
-		events="home.search.events"
-		>
-	</ui-gmap-circle>
+	options="home.map.options"
+	events="home.map.events">
 </ui-gmap-google-map>
 <div class="panel panel-default">
 	<div class="panel-heading" 
