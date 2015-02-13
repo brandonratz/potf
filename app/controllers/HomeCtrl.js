@@ -1,7 +1,4 @@
 (function() {
-
-var DIA = 2;
-
 angular.module('myApp').
 controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMapApi, search) {
 	var ctrl = this;
@@ -12,16 +9,20 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 		console.log('right');
 	};
 	function updateLots() {
+		var center = ctrl.map.control.getGMap().getCenter();
+		var ne = ctrl.map.control.getGMap().getBounds().getNorthEast();
+		var sw = ctrl.map.control.getGMap().getBounds().getSouthWest();
 		search.search(
 			{
-				lat: ctrl.map.center.latitude,
-				lng: ctrl.map.center.longitude,
+				lat: center.lat(),
+				lng: center.lng(),
+				dia: search.getDistanceFromLatLonInKm(ne.lat(), ne.lng(), sw.lat(), sw.lng()),
 				start: 0,
 				end: 1
 			}
 		).
 		then(function(data) {
-			console.log(data);
+			ctrl.lots = data;
 		}).
 		catch(function() {
 			console.log('error');
@@ -45,11 +46,12 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 				scaleControl: true
 			},
 			events: {
-				dragend: updateLots
+				idle: updateLots
+			},
+			control: {
 			}
 			
 		};	
-		updateLots();
     	});
 }]);
 })();
