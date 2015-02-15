@@ -2,12 +2,10 @@
 angular.module('myApp').
 controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMapApi, search) {
 	var ctrl = this;
-	ctrl.testleft = function() {
-		console.log('left');
-	};
-	ctrl.testright = function() {
-		console.log('right');
-	};
+	ctrl.menuOpen = false; 
+	ctrl.toggleMenu = function() { 
+		ctrl.menuOpen = ! ctrl.menuOpen; 
+	}; 
 	function updateLots() {
 		var center = ctrl.map.control.getGMap().getCenter();
 		var ne = ctrl.map.control.getGMap().getBounds().getNorthEast();
@@ -17,18 +15,28 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 				lat: center.lat(),
 				lng: center.lng(),
 				dia: search.getDistanceFromLatLonInKm(ne.lat(), ne.lng(), sw.lat(), sw.lng()),
-				start: 0,
-				end: 1
+				start: ctrl.start.getTime(),
+				end: ctrl.start.getTime() + 24 * 60 * 60 * 1000
 			}
 		).
 		then(function(data) {
+			console.log(data);
 			ctrl.lots = data;
 		}).
 		catch(function() {
 			console.log('error');
 		});
 	}; 
+	var now = new Date();
+	ctrl.start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours()); 
+	ctrl.searchDateInput = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	ctrl.searchHoursInput = ctrl.start.getHours();
 	uiGmapGoogleMapApi.then(function(maps) {
+		ctrl.searchUpdate = function() {
+			ctrl.menuOpen = false;
+			ctrl.start = new Date(ctrl.searchDateInput.getTime() + ctrl.searchHoursInput * 60 * 60 * 1000);
+			updateLots();
+		};
 		ctrl.map = {
 			center: {
 				latitude : 29.6254423,

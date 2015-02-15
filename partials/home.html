@@ -1,30 +1,45 @@
-<ui-gmap-google-map 
-	center="home.map.center" 
-	zoom="14"
-	options="home.map.options"
-	events="home.map.events"
-	control="home.map.control">
-
-<ui-gmap-marker
-	ng-repeat="lot in home.lots"
-        idKey="lot._id"
-        coords="{latitude : lot.lat, longitude : lot.lng}"
-	icon="'/assets/img/available.png'"
-        >
-</ui-gmap-marker>
-
-
-</ui-gmap-google-map>
-<div class="panel panel-default">
-	<div class="panel-heading" 
-		ng-attr-screen-heading 
-		ng-attr-center-name="center"
-		ng-attr-left-name="left"
-		ng-attr-left-function="home.testleft"
-		ng-attr-left-icon="glyphicon-chevron-left"
-		ng-attr-right-name="right"
-		ng-attr-right-function="home.testright"
-		ng-attr-right-icon="glyphicon-chevron-right"
-	>
+<div ng-class="{'map-container': true, 'map-container-open': home.menuOpen}">
+	<ui-gmap-google-map 
+		center="home.map.center" 
+		zoom="14"
+		options="home.map.options"
+		events="home.map.events"
+		control="home.map.control">
+		<ui-gmap-marker
+			ng-repeat="lot in home.lots"
+			idKey="lot._id"
+			coords="{latitude : lot.lat, longitude : lot.lng}"
+			icon="'/assets/img/available.png'"
+			>
+		</ui-gmap-marker>
+	</ui-gmap-google-map>
+</div>
+<div ng-class="{'menu-container': true, 'menu-container-open': home.menuOpen}">
+	<form name="search" role="form" novalidate> 
+		<div ng-class="{'form-group': true, 'has-error': search.date.$invalid}"> 
+			<label class="control-label" for="date">Date</label> 
+			<input type="date" name="date" class="form-control" id="date" ng-model="home.searchDateInput" required> 
+		</div> 
+		<div ng-class="{'form-group': true, 'has-error': search.hours.$invalid}"> 
+			<label class="control-label" for="hours">Hour</label> 
+			<input type="number" min="0" max="23" name="hours" class="form-control" id="hours" ng-model="home.searchHoursInput" required> 
+		</div> 
+		<button type="button" class="btn btn-default btn-sm" ng-click="home.searchUpdate()" ng-disabled="search.$invalid"><span class="glyphicon glyphicon-save"</span> update</button>	
+	</form> 
+</div>
+<div ng-class="{'content-container': true, 'content-container-open': home.menuOpen}">
+	<div class="panel panel-default">
+		<div class="panel-heading" 
+			ng-attr-screen-heading 
+			ng-attr-center-name="Park"
+			ng-attr-left-name="time"
+			ng-attr-left-function="home.toggleMenu"
+			ng-attr-left-icon="glyphicon-time"
+		>
+		</div>
 	</div>
 </div>
+
+
+
+
