@@ -1,7 +1,7 @@
 <div ng-class="{'map-container': true, 'map-container-open': home.menuOpen}">
 	<ui-gmap-google-map 
 		center="home.map.center" 
-		zoom="14"
+		zoom="home.map.zoom"
 		options="home.map.options"
 		events="home.map.events"
 		control="home.map.control">
@@ -9,7 +9,8 @@
 			ng-repeat="lot in home.lots"
 			idKey="lot._id"
 			coords="{latitude : lot.lat, longitude : lot.lng}"
-			icon="'/assets/img/available.png'"
+			icon="(lot.available === 0 ? '/assets/img/unavailable.png' : '/assets/img/available.png')"
+			click="(lot.available === 0 ? null : home.navigate('/lots/' + lot._id))"
 			>
 		</ui-gmap-marker>
 	</ui-gmap-google-map>
@@ -33,7 +34,7 @@
 			ng-attr-screen-heading 
 			ng-attr-center-name="Park"
 			ng-attr-left-name="time"
-			ng-attr-left-function="home.toggleMenu"
+			ng-attr-left-function="home.toggleMenu()"
 			ng-attr-left-icon="glyphicon-time"
 		>
 		</div>

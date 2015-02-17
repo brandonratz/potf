@@ -1,7 +1,8 @@
 (function() {
 angular.module('myApp').
-controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMapApi, search) {
+controller('HomeCtrl', ['uiGmapGoogleMapApi', 'homeState', 'navigator', 'search', function (uiGmapGoogleMapApi, homeState, navigator, search) {
 	var ctrl = this;
+	ctrl.navigate = navigator.navigate;
 	ctrl.menuOpen = false; 
 	ctrl.toggleMenu = function() { 
 		ctrl.menuOpen = ! ctrl.menuOpen; 
@@ -37,29 +38,20 @@ controller('HomeCtrl', ['uiGmapGoogleMapApi', 'search', function (uiGmapGoogleMa
 			ctrl.start = new Date(ctrl.searchDateInput.getTime() + ctrl.searchHoursInput * 60 * 60 * 1000);
 			updateLots();
 		};
-		ctrl.map = {
-			center: {
-				latitude : 29.6254423,
-                        	longitude : -82.4373587
+		ctrl.map = homeState.map;
+		ctrl.map.options = {
+			disableDefaultUI: true,
+			zoomControl: true,
+			zoomControlOptions: {
+				style: maps.ZoomControlStyle.DEFAULT,
+				position: maps.ControlPosition.BOTTOM_LEFT
 			},
-	
-			// SETTING OPTIONS HERE BECAUSE OF MAPS DEFAULT CONSTANTS
-			options: {
-				disableDefaultUI: true,
-				zoomControl: true,
-				zoomControlOptions: {
-					style: maps.ZoomControlStyle.DEFAULT,
-					position: maps.ControlPosition.BOTTOM_LEFT
-				},
-				scaleControl: true
-			},
-			events: {
-				idle: updateLots
-			},
-			control: {
-			}
-			
-		};	
+			scaleControl: true
+		};
+		ctrl.map.events = {
+			idle: updateLots
+		};
+		ctrl.map.control = {};
     	});
 }]);
 })();
