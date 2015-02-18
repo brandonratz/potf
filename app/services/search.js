@@ -5,25 +5,8 @@ function deg2rad(deg) {
 	return deg * (Math.PI/180)
 }
 angular.module('myApp').
-factory('search', ['$q', function($q) {
+factory('search', ['$q', 'lots', function($q, lots) {
 	var service = {
-		lots: [{
-			_id : 'a',
-			name : 'Regency Oaks Parking',
-			description : 'Regency Oaks Parking',
-			lat : 29.629291,
-			lng : -82.371552,
-			spaces : 23,
-			buffer : 2
-		},{
-			_id : 'b',
-			name : '24/7 Parking Spaces at Country Gardens by Shands',
-			description : '24/7 Parking Spaces at Country Gardens by Shands',
-			lat : 29.633865,
-			lng : -82.342722,
-			spaces : 5,
-			buffer : 1
-		}],
 		reservations: [{
 			_id: 'r1',
 			lot: 'b',
@@ -67,23 +50,21 @@ factory('search', ['$q', function($q) {
 		intRegex.test(end) &&
 		parseInt(start) < parseInt(end)) {
 			var result = [];
-			for (var i = 0; i < service.lots.length; i++) {
-				if (service.getDistanceFromLatLonInKm(lat,lng,service.lots[i].lat,service.lots[i].lng) < dia / 2) {
+			for (var i = 0; i < lots.lots.length; i++) {
+				if (service.getDistanceFromLatLonInKm(lat,lng,lots.lots[i].lat,lots.lots[i].lng) < dia / 2) {
 					var reserved = 0;
 					for (var j = 0; j < service.reservations.length; j++) {
-						if (service.reservations[j].lot === service.lots[i]._id &&
+						if (service.reservations[j].lot === lots.lots[i]._id &&
 						service.reservations[j].start < end &&
 						service.reservations[j].end > start) {
 							reserved++;
 						}
 					}
 					result.push({
-						_id: service.lots[i]._id,
-						name: service.lots[i].name,
-						description: service.lots[i].description,
-						lat: service.lots[i].lat,
-						lng: service.lots[i].lng,
-						available: service.lots[i].spaces - service.lots[i].buffer - reserved 
+						_id: lots.lots[i]._id,
+						lat: lots.lots[i].lat,
+						lng: lots.lots[i].lng,
+						available: lots.lots[i].spaces - lots.lots[i].buffer - reserved 
 					});
 				}
 			}
