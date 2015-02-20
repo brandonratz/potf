@@ -22,11 +22,16 @@
 				<div><strong>end:</strong> {{lot.end | date: 'medium'}}</div>
 			</div>
 			<div class="panel-footer"
+				ng-if="! lot.full"
 				ng-attr-screen-heading 
 				ng-attr-right-name="reserve"
-				ng-attr-right-function=""
+				ng-attr-right-function="lot.reserve()"
 				ng-attr-right-icon="glyphicon-save"
 			>
+			</div>
+			<div class="panel-footer" ng-if="lot.full">
+				<p class="text-danger" style="text-align: center;"><strong>Lot is Full<strong></p>
+			</div>
 		</div>
 	</div>
 </div>

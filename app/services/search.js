@@ -5,19 +5,8 @@ function deg2rad(deg) {
 	return deg * (Math.PI/180)
 }
 angular.module('myApp').
-factory('search', ['$q', 'lots', function($q, lots) {
+factory('search', ['$q', 'Lots', 'Reservations', function($q, Lots, Reservations) {
 	var service = {
-		reservations: [{
-			_id: 'r1',
-			lot: 'b',
-			start: 1424523600000,
-			end: 1424556000000 
-		},{
-			_id: 'r2',
-			lot: 'b',
-			start: 1424523600000,
-			end: 1424538000000
-		}]
 	};
 	service.getDistanceFromLatLonInKm = function(lat1,lon1,lat2,lon2) {
 		var R = 6371; // Radius of the earth in km
@@ -50,21 +39,21 @@ factory('search', ['$q', 'lots', function($q, lots) {
 		intRegex.test(end) &&
 		parseInt(start) < parseInt(end)) {
 			var result = [];
-			for (var i = 0; i < lots.lots.length; i++) {
-				if (service.getDistanceFromLatLonInKm(lat,lng,lots.lots[i].lat,lots.lots[i].lng) < dia / 2) {
+			for (var i = 0; i < Lots.lots.length; i++) {
+				if (service.getDistanceFromLatLonInKm(lat,lng,Lots.lots[i].lat,Lots.lots[i].lng) < dia / 2) {
 					var reserved = 0;
-					for (var j = 0; j < service.reservations.length; j++) {
-						if (service.reservations[j].lot === lots.lots[i]._id &&
-						service.reservations[j].start < end &&
-						service.reservations[j].end > start) {
+					for (var j = 0; j < Reservations.reservations.length; j++) {
+						if (Reservations.reservations[j].lot === Lots.lots[i]._id &&
+						Reservations.reservations[j].start < end &&
+						Reservations.reservations[j].end > start) {
 							reserved++;
 						}
 					}
 					result.push({
-						_id: lots.lots[i]._id,
-						lat: lots.lots[i].lat,
-						lng: lots.lots[i].lng,
-						available: lots.lots[i].spaces - lots.lots[i].buffer - reserved 
+						_id: Lots.lots[i]._id,
+						lat: Lots.lots[i].lat,
+						lng: Lots.lots[i].lng,
+						available: Lots.lots[i].spaces - Lots.lots[i].buffer - reserved 
 					});
 				}
 			}
