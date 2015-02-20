@@ -15,6 +15,11 @@ config(['$routeProvider', function($routeProvider) {
        			controller: 'ErrorCtrl',
 			controllerAs: 'error'
       		}).
+		when('/lots/:_id/:start/:end', {
+      	  		templateUrl: 'partials/lot.html',
+       			controller: 'LotCtrl',
+			controllerAs: 'lot'
+      		}).
       		otherwise({
        			redirectTo: '/'
       		});

@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+	<div class="panel-heading" 
+		ng-attr-screen-heading 
+		ng-attr-center-name="Park"
+		ng-attr-left-name="back"
+		ng-attr-left-function="lot.navigate('/')"
+		ng-attr-left-icon="glyphicon-chevron-left"
+	>
+	</div>
+	<div class="panel-body">
+		<div style="margin-bottom: 10px;"><strong>{{lot.lot.name}}</strong></div>
+		<div style="text-align: center; margin-bottom: 10px;"><img src="assets/img/lot.png" class="img-responsive img-thumbnail"></div>
+		<div class="well" style="margin-bottom: 10px;">{{lot.lot.description}}</div>
+		<div class="panel panel-default">
+			<div class="panel-heading"
+				ng-attr-screen-heading 
+				ng-attr-center-name="Reservation"
+			>
+			</div>
+			<div class="panel-body">
+				<div style="margin-bottom: 10px;"><strong>start:</strong> {{lot.start | date: 'medium'}}</div>
+				<div><strong>end:</strong> {{lot.end | date: 'medium'}}</div>
+			</div>
+			<div class="panel-footer"
+				ng-if="! lot.full"
+				ng-attr-screen-heading 
+				ng-attr-right-name="reserve"
+				ng-attr-right-function="lot.reserve()"
+				ng-attr-right-icon="glyphicon-save"
+			>
+			</div>
+			<div class="panel-footer" ng-if="lot.full">
+				<p class="text-danger" style="text-align: center;"><strong>Lot is Full<strong></p>
+			</div>
+		</div>
+	</div>
+</div>

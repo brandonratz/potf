@@ -8,10 +8,10 @@ directive('screenHeading', function() {
 			centerName: '@',
 			leftName: '@',
 			leftIcon: '@',
-			leftFunction: '=',
+			leftFunction: '&',
 			rightName: '@',
 			rightIcon: '@',
-			rightFunction: '='
+			rightFunction: '&'
 		},
 		bindToController: true,
 		controllerAs: 'screenHeading',
