@@ -1,7 +1,6 @@
 (function() {
 angular.module('myApp', [
-	'ngRoute',
-	'uiGmapgoogle-maps'
+	'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
@@ -23,12 +22,5 @@ config(['$routeProvider', function($routeProvider) {
       		otherwise({
        			redirectTo: '/'
       		});
-}]).
-config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
-	uiGmapGoogleMapApiProvider.configure({
-		key: 'AIzaSyDKwvbP0YXjO5KhUM7gjGKnbVRCbEsofx8',
-		v: '3.17',
-		libraries: 'weather,geometry,visualization'
-	});
 }]);
 })();
