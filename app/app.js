@@ -19,6 +19,11 @@ config(['$routeProvider', function($routeProvider) {
        			controller: 'LotCtrl',
 			controllerAs: 'lot'
       		}).
+		when('/reservations', {
+      	  		templateUrl: 'partials/reservations.html',
+       			controller: 'ReservationsCtrl',
+			controllerAs: 'reservations'
+      		}).
       		otherwise({
        			redirectTo: '/'
       		});

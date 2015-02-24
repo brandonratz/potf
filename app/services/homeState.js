@@ -11,10 +11,10 @@ factory('homeState', ['$window', function($window) {
 	service.searchWindow.end = new Date(service.searchWindow.start.getTime() + 24 * 60 * 60 * 1000);
         var mapOptions = {
                 center: {
-			lat : 29.6254423,
-			lng : -82.4373587
+			lat : 29.6316144,
+			lng : -82.3595472
 		},
-                zoom: 14,
+                zoom: 13,
                 disableDefaultUI: true,
                 zoomControl: true,
                 zoomControlOptions: {
