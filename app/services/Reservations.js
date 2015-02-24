@@ -1,6 +1,6 @@
 (function() {
 angular.module('myApp').
-factory('Reservations', ['$q', 'Lots', function($q, Lots) {
+factory('Reservations', ['$filter', '$q', 'Lots', function($filter, $q, Lots) {
 	var service = function(params) {
 		var reservation = this;
 		reservation.lot = params.lot;
@@ -45,9 +45,23 @@ factory('Reservations', ['$q', 'Lots', function($q, Lots) {
 		start: 1424523600000,
 		end: 1424538000000
 	}];
-	service.query = function() {
+	service.query = function(params) {
 		var deferred = $q.defer();
-		deferred.resolve(service.reservations);
+		var d = new Date();
+		var now = d.getTime();
+		var reservattions = [];
+		if (params.lot) {
+			reservations = $filter('filter')(service.reservations, {lot: params.lot}, true);
+		} else {
+			var reservations = service.reservations;
+		}
+		if (params.active === 'true') {
+			deferred.resolve($filter('filter')(reservations, function(value, index) {
+				return value.end > now;
+			}));
+		} else {
+			deferred.resolve(reservations);
+		}
 		return deferred.promise;
 	}
 	return service;
