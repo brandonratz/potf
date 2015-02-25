@@ -1,0 +1,29 @@
+<div class="panel panel-default" ng-cloak>
+	<div class="panel-heading" 
+		ng-if="! reservations.all"
+		ng-attr-screen-heading 
+		ng-attr-center-name="Park"
+		ng-attr-left-name="back"
+		ng-attr-left-function="reservations.navigate('/')"
+		ng-attr-left-icon="glyphicon-chevron-left"
+		ng-attr-right-name="show all"
+		ng-attr-right-function="reservations.showAll()"
+		ng-attr-right-icon="glyphicon-resize-full"
+	>
+	</div>
+	<div class="panel-heading" 
+		ng-if="reservations.all"
+		ng-attr-screen-heading 
+		ng-attr-center-name="Park"
+		ng-attr-left-name="back"
+		ng-attr-left-function="reservations.navigate('/')"
+		ng-attr-left-icon="glyphicon-chevron-left"
+	>
+	</div>
+	<ul class="list-group">
+		<li ng-class="{'list-group-item': true, 'list-group-item-warning': reservation.end < reservations.now}" ng-repeat="reservation in reservations.reservations | orderBy : 'start'">
+			<div style="margin-bottom: 10px;"><strong>start:</strong> {{reservation.start | date: 'medium'}}</div>
+			<div><strong>end:</strong> {{reservation.end | date: 'medium'}}</div>
+		</li>
+	</ul>
+</div>

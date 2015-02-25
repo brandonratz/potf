@@ -2,8 +2,8 @@
 angular.module('myApp').
 controller('HomeCtrl', ['$timeout', '$window', 'homeState', 'navigator', 'search', function ($timeout, $window, homeState, navigator, search) {
 	var ctrl = this;
-	ctrl.navigate = navigator.navigate;
 	ctrl.menuOpen = false; 
+	ctrl.timeOpen = false; 
 	ctrl.searchDateInput = new Date(homeState.searchWindow.start.getFullYear(), homeState.searchWindow.start.getMonth(), homeState.searchWindow.start.getDate());
 	ctrl.searchHoursInput = homeState.searchWindow.start.getHours();
 	var markers = [];
@@ -17,6 +17,10 @@ controller('HomeCtrl', ['$timeout', '$window', 'homeState', 'navigator', 'search
 		clearMarkers();
 		$window.google.maps.event.clearInstanceListeners(homeState.map);
 		$window.document.getElementById('map-container').style.visibility = 'hidden';
+	}
+	ctrl.navigateReservations = function() {
+		clearMap();
+		navigator.navigate('/reservations');
 	}
 	function updateLots() {
 		clearMarkers();
@@ -54,11 +58,12 @@ controller('HomeCtrl', ['$timeout', '$window', 'homeState', 'navigator', 'search
 			};
 		}).
 		catch(function() {
+			clearMap();
 			navigator.navigate('/error');
 		});
 	};
 	ctrl.searchUpdate = function() {
-		ctrl.menuOpen = false;
+		ctrl.timeOpen = false;
 		homeState.searchWindow.start = new Date(ctrl.searchDateInput.getTime() + ctrl.searchHoursInput * 60 * 60 * 1000);
 		homeState.searchWindow.end = new Date(homeState.searchWindow.start.getTime() + 24 * 60 * 60 * 1000);
 		updateLots();

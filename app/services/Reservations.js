@@ -50,12 +50,12 @@ factory('Reservations', ['$filter', '$q', 'Lots', function($filter, $q, Lots) {
 		var d = new Date();
 		var now = d.getTime();
 		var reservattions = [];
-		if (params.lot) {
+		if (params && params.lot) {
 			reservations = $filter('filter')(service.reservations, {lot: params.lot}, true);
 		} else {
 			var reservations = service.reservations;
 		}
-		if (params.active === 'true') {
+		if (params && params.active === 'true') {
 			deferred.resolve($filter('filter')(reservations, function(value, index) {
 				return value.end > now;
 			}));

@@ -1,5 +1,5 @@
 <div class="screen-container">
-	<div ng-class="{'menu-container': true, 'menu-container-open': home.menuOpen}" ng-cloak>
+	<div ng-class="{'time-container': true, 'time-container-open': home.timeOpen}" ng-cloak>
 		<form name="search" role="form" novalidate> 
 			<div ng-class="{'form-group': true, 'has-error': search.date.$invalid}"> 
 				<label class="control-label" for="date">Date</label> 
@@ -12,14 +12,22 @@
 			<button type="button" class="btn btn-default btn-sm" ng-click="home.searchUpdate()" ng-disabled="search.$invalid"><span class="glyphicon glyphicon-save"</span> update</button>	
 		</form> 
 	</div>
-	<div ng-class="{'content-container': true, 'content-container-open': home.menuOpen}" ng-cloak>
+	<div ng-class="{'menu-container': true, 'menu-container-open': home.menuOpen}" ng-cloak>
+		<ul class="list-group">
+			<li class="list-group-item" ng-click="home.navigateReservations()">My Reservations</li>
+		</ul>
+	</div>
+	<div ng-class="{'content-container': true, 'content-container-menu': home.menuOpen, 'content-container-time': home.timeOpen}" ng-cloak>
 		<div class="panel panel-default">
 			<div class="panel-heading" 
 				ng-attr-screen-heading 
 				ng-attr-center-name="Park"
-				ng-attr-left-name="time"
+				ng-attr-left-name="menu"
 				ng-attr-left-function="home.menuOpen = ! home.menuOpen"
-				ng-attr-left-icon="glyphicon-time"
+				ng-attr-left-icon="glyphicon-list"
+				ng-attr-right-name="time"
+				ng-attr-right-function="home.timeOpen = ! home.timeOpen"
+				ng-attr-right-icon="glyphicon-time"
 			>
 			</div>
 		</div>
