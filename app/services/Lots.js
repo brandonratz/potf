@@ -11,7 +11,28 @@ factory('Lots', ['$q', function($q) {
 		lng : -82.371552,
 		spaces : 23,
 		buffer : 2
+	},
+                    
+    {
+		_id : 'a1',
+		name : 'Regency Oaks Parking1',
+		description : 'Regency Oaks Parking1',
+		lat : 29.729291,
+		lng : -82.771552,
+		spaces : 23,
+		buffer : 2
 	},{
+		_id : 'a2',
+		name : 'Regency Oaks Parking2',
+		description : 'Regency Oaks Parking2',
+		lat : 29.029291,
+		lng : -82.071552,
+		spaces : 23,
+		buffer : 2
+	},
+                    
+                    
+                    {
 		_id : 'b',
 		name : '24/7 Parking Spaces at Country Gardens by Shands',
 		description : '24/7 Parking Spaces at Country Gardens by Shands',

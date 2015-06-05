@@ -21,9 +21,16 @@
 	>
 	</div>
 	<ul class="list-group">
-		<li ng-class="{'list-group-item': true, 'list-group-item-warning': reservation.end < reservations.now}" ng-repeat="reservation in reservations.reservations | orderBy : 'start'">
+		<li ng-class="{'list-group-item': true, 'list-group-item-warning': reservation.end < reservations.now}" ng-repeat="(key,reservation) in reservations.reservations | orderBy : 'start'">
 			<div style="margin-bottom: 10px;"><strong>start:</strong> {{reservation.start | date: 'medium'}}</div>
-			<div><strong>end:</strong> {{reservation.end | date: 'medium'}}</div>
+			<div><strong>end:</strong> {{reservation.end | date: 'medium'}}
+           
+            
+            </div>
+             <button   confirmation-needed = "Are you sure you want to delete this award?" ng-click="reservations.cancel(key)" >cancel this reservation</button>
 		</li>
 	</ul>
+    
+  
+    
 </div>

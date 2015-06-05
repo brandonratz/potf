@@ -13,6 +13,7 @@ controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigato
 		navigator.navigate('/error');
 	});
 	ctrl.showAll = function() {
+         console.log('test show');
 		ctrl.all = true;
 		Reservations.query().then(function(data) {
 			ctrl.reservations = data;
@@ -20,5 +21,13 @@ controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigato
 			navigator.navigate('/error');
 		});
 	};
+    ctrl.cancel = function(key) {
+        console.log('test cenale');
+       delete ctrl.reservations[key]; 
+		
+	};
+    
+    
+    
 }]);
 })();
