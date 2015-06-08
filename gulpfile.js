@@ -38,7 +38,7 @@ jsSources = [
     'app/*.js'
 ];
 sassSources = ['components/sass/style.scss'];
-htmlSources = [outputDir + '*.html'];
+htmlSources = [outputDir +'partials/*.html'];
 jsonSources = [outputDir + 'js/*.json'];
 
 
@@ -58,7 +58,7 @@ gulp.task('watch', function() {
   gulp.watch(coffeeSources, ['coffee']);
   gulp.watch(jsSources, ['js']);
   gulp.watch('components/sass/*.scss', ['compass']);
-  gulp.watch('builds/development/*.html', ['html']);
+  gulp.watch('partials/*.html', ['html']);
   gulp.watch('builds/development/js/*.json', ['json']);
   gulp.watch('builds/development/images/**/*.*', ['images']);
 });
@@ -71,14 +71,14 @@ gulp.task('connect', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('builds/development/*.html')
+  gulp.src('partials/*.html')
     .pipe(gulpif(env === 'production', minifyHTML()))
-    .pipe(gulpif(env === 'production', gulp.dest(outputDir)))
+    .pipe(gulpif(env === 'production', gulp.dest(outputDir+'partials')))
     .pipe(connect.reload())
 });
 
 gulp.task('images', function() {
-  gulp.src('builds/development/images/**/*.*')
+  gulp.src('assets/img/*.*')
     .pipe(gulpif(env === 'production', imagemin({
       progressive: true,
       svgoPlugins: [{ removeViewBox: false }],

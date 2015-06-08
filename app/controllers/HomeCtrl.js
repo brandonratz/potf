@@ -18,10 +18,19 @@ controller('HomeCtrl', ['$timeout', '$window', 'homeState', 'navigator', 'search
 		$window.google.maps.event.clearInstanceListeners(homeState.map);
 		$window.document.getElementById('map-container').style.visibility = 'hidden';
 	}
+    // navigation controll for the Home menu
 	ctrl.navigateReservations = function() {
 		clearMap();
 		navigator.navigate('/reservations');
 	}
+    ctrl.help = function() {
+		clearMap();
+		navigator.navigate('/help');
+	}
+    
+    
+    
+    
 	function updateLots() {
 		clearMarkers();
 		var ne = homeState.map.getBounds().getNorthEast();

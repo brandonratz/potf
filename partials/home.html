@@ -14,8 +14,26 @@
 	</div>
 	<div ng-class="{'menu-container': true, 'menu-container-open': home.menuOpen}" ng-cloak>
 		<ul class="list-group">
-			<li class="list-group-item" ng-click="home.navigateReservations()">My Reservations</li>
+            <li class="list-group-item" ng-click="home.navigateReservations()">My Reservations</li>
 		</ul>
+        <ul class="list-group">
+			<li class="list-group-item" ng-click="home.help()">help</li>
+		</ul>
+        <ul class="list-group">
+			<li class="list-group-item" ng-click="home.findParking()">Find Parking</li>
+		</ul>
+        <ul class="list-group">
+			<li class="list-group-item" ng-click="home.account()">Account</li>
+		</ul>
+        <ul class="list-group">
+			<li class="list-group-item" ng-click="home.lotsOwner()">Lots owner</li>
+		</ul>
+        <ul class="list-group">
+			<li class="list-group-item" ng-click="home.logOut()">Log out</li>
+		</ul>
+        
+        
+        
 	</div>
 	<div ng-class="{'content-container': true, 'content-container-menu': home.menuOpen, 'content-container-time': home.timeOpen}" ng-cloak>
 		<div class="panel panel-default">

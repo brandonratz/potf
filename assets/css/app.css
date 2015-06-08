@@ -51,3 +51,20 @@
 .time-container-open {
 	right: 0px;
 }
+
+li {
+ 
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+
+li: hover {
+
+color: dodgerblue;
+}
+
+.list-group li:hover{
+    background:#A5A5A5  !important;
+}

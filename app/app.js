@@ -24,6 +24,11 @@ config(['$routeProvider', function($routeProvider) {
        			controller: 'ReservationsCtrl',
 			controllerAs: 'reservations'
       		}).
+       when('/help', {
+      	  		templateUrl: 'partials/help.html',
+       			controller: 'ReservationsCtrl',
+			controllerAs: 'reservations'
+      		}).
       		otherwise({
        			redirectTo: '/'
       		});
