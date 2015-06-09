@@ -29,6 +29,11 @@ config(['$routeProvider', function($routeProvider) {
        			controller: 'ReservationsCtrl',
 			controllerAs: 'reservations'
       		}).
+        when('/logout', {
+      	  		templateUrl: 'partials/home.html',
+       			controller: 'HomeCtrl',
+			controllerAs: 'home'
+      		}).
       		otherwise({
        			redirectTo: '/'
       		});

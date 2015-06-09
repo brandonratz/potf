@@ -39,7 +39,16 @@ factory('Reservations', ['$filter', '$q', 'Lots', function($filter, $q, Lots) {
 		lot: 'b',
 		start: 1424523600000,
 		end: 1424556000000 
-	},{
+	},
+    {
+		_id: 'r11',
+		lot: 'b1',
+		start: 1424523600001,
+		end: 1424556000001 
+	},
+                            
+                            
+    {
 		_id: 'r2',
 		lot: 'b',
 		start: 1424523600000,

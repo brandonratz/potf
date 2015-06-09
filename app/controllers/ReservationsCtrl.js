@@ -23,7 +23,8 @@ controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigato
 	};
     ctrl.cancel = function(key) {
         console.log('test cenale');
-       delete ctrl.reservations[key]; 
+        debugger;
+     delete ctrl.reservations[key]; 
 		
 	};
     
