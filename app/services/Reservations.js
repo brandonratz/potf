@@ -36,23 +36,23 @@ factory('Reservations', ['$filter', '$q', 'Lots', function($filter, $q, Lots) {
 	};
 	service.reservations = [{
 		_id: 'r1',
-		lot: 'b',
-		start: 1424523600000,
-		end: 1424556000000 
-	},
-    {
-		_id: 'r11',
 		lot: 'b1',
-		start: 1424523600001,
-		end: 1424556000001 
+		start: 1433950325000,
+		end: 1433951328000    //http://www.epochconverter.com/
 	},
-                            
-                            
     {
 		_id: 'r2',
-		lot: 'b',
-		start: 1424523600000,
-		end: 1424538000000
+		lot: 'b2',
+		start: 1433950325,
+		end: 1433950325 
+	},
+                            
+                            
+    {
+		_id: 'r3',
+		lot: 'b3',
+		start: 1433950325,
+		end: 1433950325
 	}];
 	service.query = function(params) {
 		var deferred = $q.defer();

@@ -14,16 +14,19 @@ controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigato
 	});
 	ctrl.showAll = function() {
          console.log('test show');
+       
 		ctrl.all = true;
 		Reservations.query().then(function(data) {
 			ctrl.reservations = data;
+              console.log(ctrl.reservations);
 		}).catch(function() {
 			navigator.navigate('/error');
 		});
 	};
     ctrl.cancel = function(key) {
         console.log('test cenale');
-        debugger;
+          console.log(ctrl.reservations+"  "+key);
+       // debugger;
      delete ctrl.reservations[key]; 
 		
 	};
