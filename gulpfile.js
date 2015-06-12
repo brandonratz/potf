@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngcrush = require('imagemin-pngcrush'),
     concat = require('gulp-concat');
+    karma = require('gulp-karma');
 
 var env,
     coffeeSources,
@@ -20,6 +21,17 @@ var env,
     jsonSources,
     outputDir,
     sassStyle;
+
+
+var testFiles = [
+       'lib/angular/angular.js',
+        'lib/angular-route/angular-route.js',
+         'lib/angular/angular-mocks.js',
+       'app/**/**.js',
+      'app/controllers/ReservationsCtrl.spec.js',
+        'app/app.js',
+      'todo-spec.js'
+];
 
 env = process.env.NODE_ENV || 'production';
 
@@ -94,5 +106,30 @@ gulp.task('json', function() {
     .pipe(gulpif(env === 'production', gulp.dest('builds/production/js')))
     .pipe(connect.reload())
 });
+
+
+// Karma plugin begins
+gulp.task('test', function() {
+  // Be sure to return the stream 
+  return gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero 
+      throw err;
+    });
+});
+ 
+gulp.task('kdefault', function() {
+  gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
+});
+
+//// Karma plugin ends
 
 gulp.task('default', ['html', 'json', 'js', 'images', 'connect', 'watch']);
