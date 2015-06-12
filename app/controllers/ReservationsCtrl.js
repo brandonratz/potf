@@ -1,6 +1,6 @@
 (function() {
 angular.module('myApp').
-controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigator, Reservations) {
+controller('ReservationsCtrl', ['navigator', 'Reservations', '$scope', function (navigator, Reservations,$scope) {
 	var ctrl = this;
 	ctrl.all = false;
 	ctrl.navigate = navigator.navigate;
@@ -30,6 +30,19 @@ controller('ReservationsCtrl', ['navigator', 'Reservations',  function (navigato
      delete ctrl.reservations[key]; 
 		
 	};
+    
+    $scope.abc=14;
+       $scope.password = '';
+  $scope.grade = function() {
+    var size = $scope.password.length;
+    if (size > 8) {
+      $scope.strength = 'strong';
+    } else if (size > 3) {
+      $scope.strength = 'medium';
+    } else {
+      $scope.strength = 'weak';
+    }
+  };
     
     
     

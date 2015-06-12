@@ -1,8 +1,22 @@
 (function() {
 angular.module('myApp', [
-	'ngRoute'
-]).
-config(['$routeProvider', function($routeProvider) {
+	'ngRoute', 'ngMock'
+])
+
+.controller('PasswordController', function PasswordController($scope) {
+  $scope.password = '';
+  $scope.grade = function() {
+    var size = $scope.password.length;
+    if (size > 8) {
+      $scope.strength = 'strong';
+    } else if (size > 3) {
+      $scope.strength = 'medium';
+    } else {
+      $scope.strength = 'weak';
+    }
+  };
+})
+.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 		when('/', {
       	  		templateUrl: 'partials/home.html',
