@@ -2,7 +2,13 @@
 angular.module('myApp').
 controller('ReservationsCtrl', ['navigator', 'Reservations', '$scope', function (navigator, Reservations,$scope) {
 	var ctrl = this;
-	ctrl.all = false;
+	   
+    
+    ctrl.all = false;
+    $scope.all= false;
+    
+    
+    
 	ctrl.navigate = navigator.navigate;
 	ctrl.reservations = [];
 	var d = new Date();
